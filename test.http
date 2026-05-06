@@ -1,0 +1,32 @@
+### Get all kategories
+
+GET http://localhost:8080/api/categories
+Accept: application/json
+
+
+### Create new category
+POST http://localhost:8080/api/categories
+X-API-Key:RAHASIA
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name":"King"
+}
+
+### FindById categories
+GET http://localhost:8080/api/categories/20
+Accept: application/json
+
+
+### Update category by id
+PUT http://localhost:8080/api/categories/1
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name":"Master"
+}
+### Delete category by id
+DELETE http://localhost:8080/api/categories/1
+Accept: application/json
