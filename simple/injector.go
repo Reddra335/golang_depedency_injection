@@ -4,6 +4,9 @@
 package simple
 
 import (
+	"io"
+	"os"
+
 	"github.com/google/wire"
 )
 
@@ -52,5 +55,23 @@ func InitializedFoo_Bar() *Foo_Bar {
 
 	wire.Build(NewBar, NewFoo, wire.Struct(new(Foo_Bar), "Bar", "Foo"))
 
+	return nil
+}
+
+var fooValue = &Foo{}
+var barValue = &Bar{}
+
+func InitializedFooBarUsingValue() *Foo_Bar {
+	wire.Build(wire.Value(fooValue), wire.Value(barValue), wire.Struct(new(Foo_Bar), "*"))
+	return nil
+}
+
+func InitializedReader() io.Reader {
+	wire.Build(wire.InterfaceValue(new(io.Reader), os.Stdin))
+	return nil
+}
+
+func InitializedConfiguration() *Configuration {
+	wire.Build(NewAplication, wire.FieldsOf(new(*Aplication), "Configuration"))
 	return nil
 }
